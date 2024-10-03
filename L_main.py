@@ -97,7 +97,7 @@ trainer = L.Trainer(accelerator='gpu',
                     max_epochs=num_epochs,
                     callbacks=[EarlyStopping(monitor='val_loss', 
                                              patience=5),
-                               CleanRichProgressBar(leave=True),
+                               CleanRichProgressBar(leave=False),
                                LearningRateMonitor(logging_interval='epoch')],
                     logger=logger)
 
