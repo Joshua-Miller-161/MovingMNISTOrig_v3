@@ -20,6 +20,7 @@ device = GetDevice()
 torch.set_default_device(device)
 #====================================================================
 ''' Hyperparams '''
+num_epochs = 2
 in_frames  = 10
 out_frames = 1
 filters    = 1
@@ -31,12 +32,20 @@ path = 'mnist_test_seq.npy'
 parser = argparse.ArgumentParser(description='Optional app description')
 parser.add_argument('--path', type=str, nargs=1,
                     help='An optional integer positional argument', required=False)
+parser.add_argument('--num_epochs', type=int, nargs=1,
+                    help='An optional integer positional argument', required=False)
+
 args = parser.parse_args()
 arg_path = args.path
 
 try:
     if (len(arg_path) > 0):
         path = arg_path[0]
+except TypeError:
+    pass
+
+try:
+    num_epochs = args.num_epochs
 except TypeError:
     pass
 
@@ -107,8 +116,6 @@ summary(model, input_size=x_init.shape, col_names=("input_size", "output_size", 
 #plot_model(model, x_init.shape, model_name='MovingMNIST', device=device)
 
 #====================================================================
-num_epochs = 2
-
 for epoch in range(1, num_epochs+1):
     
     train_loss = 0                                                 
