@@ -28,7 +28,7 @@ filters    = 1
 ''' Data '''
 parser = argparse.ArgumentParser(description='Optional app description')
 
-parser.add_argument('--path', type=str, nargs=1,
+parser.add_argument('--path', type=str, nargs='?',
                     default='/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy', required=False)
 parser.add_argument('--num_epochs', type=int, nargs='?',
                     default=2, required=False)
@@ -37,6 +37,7 @@ args = parser.parse_args()
 path       = args.path
 num_epochs = args.num_epochs
 
+print("path", path, type(path), "e", num_epochs, type(num_epochs))
 
 MovingMNIST = np.load(path).transpose(1, 0, 2, 3)
 print(" >> MovingMNIST:", MovingMNIST.shape)

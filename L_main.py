@@ -30,7 +30,7 @@ filters    = 1
 
 parser = argparse.ArgumentParser(description='Optional app description')
 
-parser.add_argument('--path', type=str, nargs=1,
+parser.add_argument('--path', type=str, nargs='?',
                     default='/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy', required=False)
 parser.add_argument('--num_epochs', type=int, nargs='?',
                     default=2, required=False)
