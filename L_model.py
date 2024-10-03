@@ -109,7 +109,7 @@ class L_Model(L.LightningModule):
         optimizer = torch.optim.SGD(self.parameters(), lr=0.01)
         scheduler = {'scheduler': torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min'),
                      'monitor': 'val_loss',
-                     'name': 'ReduceLROnPlateau',
+                     'name': 'learning_rate',
                      'interval': 'epoch',
                      'frequency': 1}
         return [optimizer], [scheduler]
