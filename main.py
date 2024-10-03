@@ -26,31 +26,21 @@ out_frames = 1
 filters    = 1
 #====================================================================
 ''' Data '''
-
-path = '/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy'
-
 parser = argparse.ArgumentParser(description='Optional app description')
+
 parser.add_argument('--path', type=str, nargs=1,
-                    help='An optional integer positional argument', required=False)
-parser.add_argument('--num_epochs', type=int, nargs=1,
-                    help='An optional integer positional argument', required=False)
+                    default='/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy', required=False)
+parser.add_argument('--num_epochs', type=int, nargs='?',
+                    default=2, required=False)
 
 args = parser.parse_args()
-arg_path = args.path
+path       = args.path
+num_epochs = args.num_epochs
 
-try:
-    if (len(arg_path) > 0):
-        path = arg_path[0]
-except TypeError:
-    pass
-
-if not type(args.num_epochs == type(None)):
-    num_epochs = args.num_epochs
-    print(type(args.num_epochs))
 
 MovingMNIST = np.load(path).transpose(1, 0, 2, 3)
 print(" >> MovingMNIST:", MovingMNIST.shape)
-
+print(" >> num_epochs", num_epochs)
 # Shuffle Data
 np.random.shuffle(MovingMNIST)
 
