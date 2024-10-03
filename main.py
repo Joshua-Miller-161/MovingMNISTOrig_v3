@@ -27,7 +27,7 @@ filters    = 1
 #====================================================================
 ''' Data '''
 
-path = 'mnist_test_seq.npy'
+path = '/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy'
 
 parser = argparse.ArgumentParser(description='Optional app description')
 parser.add_argument('--path', type=str, nargs=1,
@@ -44,10 +44,9 @@ try:
 except TypeError:
     pass
 
-try:
+if not type(args.num_epochs == type(None)):
     num_epochs = args.num_epochs
-except TypeError:
-    pass
+    print(type(args.num_epochs))
 
 MovingMNIST = np.load(path).transpose(1, 0, 2, 3)
 print(" >> MovingMNIST:", MovingMNIST.shape)
