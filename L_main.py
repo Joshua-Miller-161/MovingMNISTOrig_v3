@@ -34,10 +34,13 @@ parser.add_argument('--path', type=str, nargs='?',
                     default='/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy', required=False)
 parser.add_argument('--num_epochs', type=int, nargs='?',
                     default=2, required=False)
+parser.add_argument('--save_path', type=str, nargs='?',
+                    default='loss_lr.pdf', required=False)
 
 args = parser.parse_args()
 path       = args.path
 num_epochs = args.num_epochs
+save_path  = args.save_path
 
 MovingMNIST = np.load(path).transpose(1, 0, 2, 3)
 print(" >> MovingMNIST:", MovingMNIST.shape)
@@ -47,8 +50,8 @@ np.random.shuffle(MovingMNIST)
 
 # Train, Test, Validation splits
 train_data = MovingMNIST[:8000]         
-val_data = MovingMNIST[8000:9000]       
-test_data = MovingMNIST[9000:10000]     
+val_data   = MovingMNIST[8000:9000]       
+test_data  = MovingMNIST[9000:10000]     
 
 def collate(batch):
 
@@ -138,6 +141,6 @@ ax[1].legend()
 print("____________________________________________________________")
 print("____________________________________________________________")
 print("____________________________________________________________")
-
 #====================================================================
+fig.savefig(save_path, bbox_inches='tight', pad_inches=0)
 plt.show()
