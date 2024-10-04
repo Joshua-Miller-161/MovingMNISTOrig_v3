@@ -32,10 +32,13 @@ parser.add_argument('--path', type=str, nargs='?',
                     default='/Users/joshuamiller/Python Files/MovingMNISTPyTorch/data/MovingMNIST/mnist_test_seq.npy', required=False)
 parser.add_argument('--num_epochs', type=int, nargs='?',
                     default=2, required=False)
+parser.add_argument('--save_path', type=str, nargs='?',
+                    default='loss_lr.pdf', required=False)
 
 args = parser.parse_args()
 path       = args.path
 num_epochs = args.num_epochs
+save_path  = args.save_path
 
 print("path", path, type(path), "e", num_epochs, type(num_epochs))
 
@@ -168,6 +171,6 @@ ax[2][0].set_ylabel('Predicted frame(s)')
 
 plt.show()
 #====================================================================
-
+fig.savefig(save_path, bbox_inches='tight', pad_inches=0)
 
 #====================================================================

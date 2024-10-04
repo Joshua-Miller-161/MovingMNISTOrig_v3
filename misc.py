@@ -2,6 +2,7 @@ import torch
 from lightning.pytorch.callbacks import RichProgressBar
 #from torchview import draw_graph
 import os
+import rich
 #====================================================================
 def GetDevice():
     if torch.cuda.is_available():
