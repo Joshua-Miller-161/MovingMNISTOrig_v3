@@ -106,13 +106,18 @@ class L_Model(L.LightningModule):
         return self.forward(x)   
     #----------------------------------------------------------------
     def configure_optimizers(self):
-        optimizer = torch.optim.SGD(self.parameters(), lr=0.01)
-        scheduler = {'scheduler': torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min'),
-                     'monitor': 'val_loss',
-                     'name': 'learning_rate',
-                     'interval': 'epoch',
-                     'frequency': 1}
-        return [optimizer], [scheduler]
+        return [torch.optim.Adam(self.parameters(), lr=1e-4)]
     #----------------------------------------------------------------
-    def lr_scheduler_step(self, scheduler, metric):
-        scheduler.step(metric)
+
+    # #----------------------------------------------------------------
+    # def configure_optimizers(self):
+    #     optimizer = torch.optim.SGD(self.parameters(), lr=0.01)
+    #     scheduler = {'scheduler': torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min'),
+    #                  'monitor': 'val_loss',
+    #                  'name': 'learning_rate',
+    #                  'interval': 'epoch',
+    #                  'frequency': 1}
+    #     return [optimizer], [scheduler]
+    # #----------------------------------------------------------------
+    # def lr_scheduler_step(self, scheduler, metric):
+    #     scheduler.step(metric)
